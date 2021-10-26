@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package nodemanager.v1;
+option go_package = "github.com/rootwarp/node-manager-api";
+
+enum CommandStatus {
+    Success = 0;
+    Failed = 1;
+}
+
+message HealthResponse {
+    bool alive = 1;
+}
+
+message StartRequest {
+}
+
+message StartResponse {
+    CommandStatus result = 1;
+}
+
+message StopRequest {
+}
+
+message UpdateRequest {
+}
+
+message UpdateResponse {
+}
+
+message StopResponse {
+    CommandStatus result = 1;
+}
+
+service NodeManager {
+    rpc Healthz(google.protobuf.Empty) returns (HealthResponse) {
+    }
+
+    rpc Start(StartRequest) returns (StartResponse) {
+    }
+
+    rpc Stop(StopRequest) returns (StopResponse) {
+    }
+
+    rpc UpdateConfig(UpdateRequest) returns (UpdateResponse) {
+
+    }
+}
